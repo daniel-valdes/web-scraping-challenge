@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+ 
+  <div class='container'>
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <h2>Latest Mars News</h2>
+      <h4>{{mars.news_title}}</h4>
+    <p>{{mars.news_p}}</p>
+
+    <div class = 'row'>
+        <div class="col-lg-8 col-md-8 col-sm-12">
+          <h2>Featured Mars Image</h2>
+          <img src="{{mars.featured_image_url}}">
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Mars Weather</h5>
+              <p class="card-text">{{mars.mars_weather}}</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <h4>Mars Facts</h4>
+          <aura:unescapedHtml value="{{mars.mars_html}}"/>
+          InnerHtml = HtmlDecode({{mars.mars_html}});
+          {{mars.mars_html}}
+      </div>      
+    </div>  
+
+      <br>
+      <br>
+
+    <h2 class="text-center">Mars Hemispheres</h2>
+    <hr>
+      <div class="row row-cols-1 row-cols-md-2">
+        {% for hemisphere in mars.hemisphere_image_urls %}
+          <div class="col mb-4">
+            <div class="card">
+              <img src="{{hemisphere.img_url}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{hemisphere.title}}</h5>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>                 
+  </div>
+
+</body>
+
+</html>
